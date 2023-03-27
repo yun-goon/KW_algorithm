@@ -3,33 +3,37 @@ from timeit import default_timer as timer
 
 def merge_sort(A,p,r):
     if p < r:
-        q = (p+r) // 2
+        q = (p+r) //2
         merge_sort(A,p,q)
-        merge_sort(A,q+1, r)
+        merge_sort(A,q+1,r)
+        merge(A,p,q,r)
 
-        i, j, t = p , q+1, 0
-        tmp = A[:]
-        while i <= q and j <= r:
-            if A[i] <= A[j]:
-                tmp[t] = A[i]
-                i += 1
-            else:
-                tmp[t] = A[j]
-                j += 1
+def merge(A,p,q,r):
+    tmp = A[:]
+    i, j, t = p, q+1, 0
+    while i <= q and j<=r:
+        if A[i] <= A[j]:
+            tmp[t] = A[i]
             t += 1
-        while i <= q:
-            tmp [t] = A[i]
             i += 1
-            t += 1
-        while j <= r:
+        else:
             tmp[t] = A[j]
+            t += 1
             j += 1
-            t += 1
-        i, t = p, 0
-        while i <= r:
-            A[i] = tmp[t]
-            i += 1
-            t += 1
+    while i <= q:
+        tmp[t] = A[i]
+        t += 1
+        i += 1
+    while j <= r:
+        tmp[t] = A[j]
+        t += 1
+        j += 1
+    i = p
+    t = 0
+    while i <= r:
+        A[i] = tmp[t]
+        i += 1
+        t += 1
 
 def test(A):
     for i in range(1, len(A)):
