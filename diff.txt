@@ -1,0 +1,25 @@
+5c5
+<     def __init__(self,key,parent):
+---
+>     def __init__(self, key, parent=None):
+11c11
+< def insert(node, key):
+---
+> def insert(node, key, parent=None):
+13c13
+<         node = Node(key)
+---
+>         node = Node(key, parent)
+15c15
+<         node.left = insert(node.left,key)
+---
+>         node.left = insert(node.left, key, node)
+17c17
+<         node.right = insert(node.right, key)
+---
+>         node.right = insert(node.right, key, node)
+67c67
+<     print(True if found.key == value else False)
+\ No newline at end of file
+---
+>     print(True if found.key == value else False)
