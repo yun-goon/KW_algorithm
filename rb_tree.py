@@ -1,5 +1,4 @@
 import random
-from timeit import default_timer as timer
 
 class Node(object):
     def __init__(self,key, parent=None):
@@ -113,65 +112,34 @@ def rb_insert(node):
             node.parent.color = "BLACK"
             node.parent.parent.color = "RED"
             right_rotate(node.parent.parent)
+        root.color = "BLACK"
 
 
 ###########################################################################
 
-x = random.sample(range(5000),10)
+x = random.sample(range(5000),50)
 value = x[8]
 
 root = None
 for i in x:
     root=insert(root,i)
-start =timer()
-
-found = search(root, value)
-print(timer() - start)
-
-if found is not None:
-    print('value', value, 'found', found.key)
-    print(True if found.key == value else False)
 
 
 
-'''
-# asciitree로 트리 그리기
-from asciitree.drawing import BoxStyle, BOX_LIGHT
-from asciitree import LeftAligned
-from collections import OrderedDict
+# found = search(root, value)
+# if found is not None:
+#     print('value', value, 'found', found.key)
+#     print(True if found.key == value else False)
 
-class NodeRenderer:
-    def __init__(self):
-        self.box_style = BoxStyle(gfx=BOX_LIGHT, horiz_len=1)
-
-    def __call__(self, node):
-        return f"[{node.key}]"
-
-def draw_tree_asciitree(root):
-    if root is None:
-        return ""
-    tree = OrderedDict()
-    node_renderer = NodeRenderer()  # NodeRenderer 인스턴스 생성
-    _draw_tree_asciitree(tree, root, node_renderer)  # node_renderer 인자로 전달
-    return LeftAligned(draw=node_renderer.box_style)(tree)
-
-def _draw_tree_asciitree(tree, node, node_renderer):
-    if node is None:
-        return
-    tree[node_renderer(node)] = subtree = OrderedDict()
-    _draw_tree_asciitree(subtree, node.left, node_renderer)
-    _draw_tree_asciitree(subtree, node.right, node_renderer)
+print(root.key,root.left,root.right,root.color)
 
 
-print(draw_tree_asciitree(root))
-'''
 
-def check(node):
-    if not node.left  == None : check(node.left)
-    if node.parent != None:
-        print('key: ', node.data, 'parents: ', node.parent.data, 'color: ', node.color, end = '\n')
-    else:
-        print('key: ', node.data, 'parents: ', node.parent, 'color: ', node.color, end = '\n')
-    if not node.right == None : check(node.right)
 
-# check(x.root)
+# def check(node):
+#     if not node.left  == None : check(node.left)
+#     if node.parent != None:
+#         print('key: ', node.data, 'parents: ', node.parent.data, 'color: ', node.color, end = '\n')
+#     else:
+#         print('key: ', node.data, 'parents: ', node.parent, 'color: ', node.color, end = '\n')
+#     if not node.right == None : check(node.right)
