@@ -51,6 +51,7 @@ def delete_node(r):
         else:
             parent.left = s.right
         return r
+##############################################
 
 def right_rotate(x):
     y = x.left
@@ -114,7 +115,7 @@ def rb_insert(node):
             right_rotate(node.parent.parent)
 
 
-
+###########################################################################
 
 x = random.sample(range(5000),10)
 value = x[8]
@@ -133,7 +134,7 @@ if found is not None:
 
 
 
-
+'''
 # asciitree로 트리 그리기
 from asciitree.drawing import BoxStyle, BOX_LIGHT
 from asciitree import LeftAligned
@@ -163,3 +164,14 @@ def _draw_tree_asciitree(tree, node, node_renderer):
 
 
 print(draw_tree_asciitree(root))
+'''
+
+def check(node):
+    if not node.left  == None : check(node.left)
+    if node.parent != None:
+        print('key: ', node.data, 'parents: ', node.parent.data, 'color: ', node.color, end = '\n')
+    else:
+        print('key: ', node.data, 'parents: ', node.parent, 'color: ', node.color, end = '\n')
+    if not node.right == None : check(node.right)
+
+# check(x.root)
