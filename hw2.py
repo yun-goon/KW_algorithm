@@ -1,5 +1,4 @@
 import random
-from timeit import default_timer as timer
 
 class Node(object):
     def __init__(self, key, parent=None):
@@ -50,6 +49,10 @@ def delete_node(r):
         else:
             parent.left = s.right
         return r
+    
+
+
+    
 
 x = random.sample(range(5000),100)
 value = x[80]
@@ -57,52 +60,14 @@ value = x[80]
 root = None
 for i in x:
     root=insert(root,i)
-# start =timer()
 
-# found = search(root, value)
-# print(timer() - start)
 
-# if found is not None:
-#     print('value', value, 'found', found.key)
-#     print(True if found.key == value else False)
 
-'''
-def print_tree(node, level=0):
-    if node is not None:
-        print_tree(node.right, level + 1)
-        print(" " * 4 * level + "->", node.key)
-        print_tree(node.left, level + 1)
-'''
-
-# print_tree(root)
-# print("\n\n\n")
 node_to_delete = search(root, value)
 
 print(search(root, value))
+
+
 delete(node_to_delete, root)
-# print_tree(root)  
+
 print(search(root, value))
-
-
-
-from graphviz import Digraph
-
-def draw_tree_graphviz(root):
-    dot = Digraph()
-    _draw_tree_graphviz(dot, None, root)
-    return dot
-
-def _draw_tree_graphviz(dot, parent, node):
-    if node is None:
-        return
-    dot.node(str(node.key))
-    if parent is not None:
-        dot.edge(str(parent.key), str(node.key))
-    if node.left is not None:
-        _draw_tree_graphviz(dot, node, node.left)
-    if node.right is not None:
-        _draw_tree_graphviz(dot, node, node.right)
-
-# graphviz로 트리 그리기
-dot = draw_tree_graphviz(root)
-dot.render('tree', view=True)
