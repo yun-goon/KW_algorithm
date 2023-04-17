@@ -15,6 +15,7 @@ def matrix_path2(n):
     for j in range(1,n+1):
         c[0][j] = 0
     print_2d_array(c)
+    print("\n")
     for i in range(1,n+1):
         for j in range(1,n+1):
             c[i][j] = c[i][j] + max(c[i-1][j],c[i][j-1])
