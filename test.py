@@ -1,3 +1,4 @@
+import numpy
 import random
 from timeit import default_timer as timer
 
